@@ -1,0 +1,39 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    background-color: #0B0B3B;
+    color: #BDBDBD;
+}
+
+div#liveQuerySystem_footer
+{
+  position: absolute;
+
+  /*right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;*/
+  width: 100vw;
+  height: 60px;
+  z-index: 2;
+  margin-top: calc(100vh - 60px);
+  padding: 10px;
+  background-color: #0B0B3B;
+  border-style: solid;
+  text-align: center;
+}
+
+div#liveQuerySystem_mainDiv
+{
+    width: 100vw;
+    height: calc(100vh - 60px);
+    overflow: scroll;
+}
+
+div#liveQuerySystem_footer input
+{
+    width: 100%;
+    background-color: #0B0B3B;
+    color: #BDBDBD;
+}

@@ -1,0 +1,43 @@
+p.chatSystem_emojiForInsertTheMessage
+{
+	display: inline;
+	font-size: x-large;
+}
+
+div#chatSystem_emojiInserterBar
+{
+	max-height: 40px;
+	overflow: scroll;
+}
+
+
+li.chatSystem_chatMessage
+{
+	margin-top: 10px;
+	width: 50%;
+	margin-left: 10px;
+}
+
+li.list-group-item-info
+{
+	margin-left: 50%;
+}
+
+div#chatSystem_AjaxForLoad
+{
+	background-color: #F2F2F2;
+	padding: 10px;
+
+	height: calc(100% - 100px);
+	overflow: scroll;
+}
+
+div#chatSystem_FormBar
+{
+	height: 100px;
+}
+
+div#chatSystem_MainContainer
+{
+	height: 100%;
+}

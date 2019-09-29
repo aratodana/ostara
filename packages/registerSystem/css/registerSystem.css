@@ -1,0 +1,13 @@
+div#registerSystem_registerForm
+{
+	width: 400px;
+	padding: 20px;
+	margin-left: calc((100% - 400px)/2);
+	margin-top: 10px;
+}
+
+div#registerSystem_registerForm input, div#registerSystem_registerForm select
+{
+	margin-top: 10px;
+}
+

@@ -1,0 +1,15 @@
+body
+{
+	margin: 0;
+	background-color: #2E2E2E !important;
+}
+
+div.card-to-center
+{
+	width: 90%;
+	height: 90%;
+	overflow: scroll;
+	margin-left: 5%;
+	margin-top: 5%;
+	padding: 10px;
+}

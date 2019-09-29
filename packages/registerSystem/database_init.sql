@@ -1,0 +1,68 @@
+DROP PROCEDURE IF EXISTS doTheUserRegistration;
+UPDATE REGISZTRACIOS_KODOK SET FELHASZNALO = NULL;
+
+DELIMITER //
+
+CREATE PROCEDURE doTheUserRegistration(
+    IN regCode VARCHAR(6),
+    IN felhNev varchar(100),
+    IN kor INT,
+    IN felhSuli varchar(200))
+BEGIN
+    DECLARE numberOfOkayRegCodes SMALLINT;
+    DECLARE returnId SMALLINT;
+    SET numberOfOkayRegCodes = (SELECT COUNT(*) FROM REGISZTRACIOS_KODOK WHERE REGKOD=regCode and FELHASZNALO IS NULL);
+    IF numberOfOkayRegCodes = 1 THEN
+        INSERT INTO FELHASZNALO (NEV, KOR, ISKOLA) VALUE (felhNev, kor, felhSuli);
+        SET returnId = LAST_INSERT_ID();
+        UPDATE REGISZTRACIOS_KODOK SET FELHASZNALO = returnId WHERE REGKOD = regCode;
+    ELSE
+        SET returnId = -1;
+        SELECT returnId AS ID;
+    END IF;
+    SELECT * FROM FELHASZNALO INNER JOIN REGISZTRACIOS_KODOK ON FELHASZNALO.ID = REGISZTRACIOS_KODOK.FELHASZNALO WHERE ID = returnId;
+    
+END //
+
+DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS doTheUserLogin;
+
+DELIMITER //
+
+CREATE PROCEDURE doTheUserLogin(
+    IN regCode VARCHAR(6),
+    IN adminCode varchar(8))
+BEGIN
+    DECLARE numberOfOkayAdminCodes SMALLINT;
+    DECLARE returnId SMALLINT;
+    SET numberOfOkayAdminCodes = (SELECT COUNT(*) FROM ADMIN WHERE KOD =adminCode);
+    IF NOT numberOfOkayAdminCodes = 1 THEN
+        SET returnId = -1;
+        SELECT returnId AS ID;
+    END IF;
+    SELECT * FROM FELHASZNALO INNER JOIN REGISZTRACIOS_KODOK ON FELHASZNALO.ID = REGISZTRACIOS_KODOK.FELHASZNALO WHERE ID = REGISZTRACIOS_KODOK.REGKOD = regCode;
+    
+END //
+
+DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS doTheUserLogin;
+
+DELIMITER //
+
+CREATE PROCEDURE doTheUserLogin(
+    IN regCode VARCHAR(6),
+    IN adminCode varchar(8))
+BEGIN
+    DECLARE numberOfOkayAdminCodes SMALLINT;
+    SET numberOfOkayAdminCodes = (SELECT COUNT(*) FROM ADMIN WHERE KOD =adminCode);
+    IF numberOfOkayAdminCodes = 1 THEN
+        SELECT * FROM FELHASZNALO INNER JOIN REGISZTRACIOS_KODOK ON FELHASZNALO.ID = REGISZTRACIOS_KODOK.FELHASZNALO WHERE REGISZTRACIOS_KODOK.REGKOD = regCode;
+    END IF;
+    
+END //
+
+DELIMITER ;
